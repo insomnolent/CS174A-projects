@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<head>
+  <script id="shader-fs" type="x-shader/x-fragment">
+    varying lowp vec4 vColor;
+    void main(void) {
+      gl_FragColor = vColor;
+    }
+  </script>
+<script id="shader-vs" type="x-shader/x-vertex">
+    attribute vec3 aVertexPosition;
+    attribute vec4 aVertexColor;
+
+    uniform mat4 uMVMatrix;
+    uniform mat4 uPMatrix;
+
+    varying lowp vec4 vColor;
+
+    void main(void) {
+      gl_Position = uPMatrix * uMVMatrix * vec4(aVertexPosition, 1.0);
+      vColor = aVertexColor;
+    }
+  </script>
+<script type="text/javascript" src="sylvester.js"></script>
+<script type="text/javascript" src="glUtils.js"></script>
+<script type="text/javascript" src="cube.js"></script>
+</head>
+<body onload="start()">
+  <canvas id="glCanvas" width="960" height="540">
+    Your browser doesn't appear to support the
+    <code>&lt;canvas&gt;</code> element.
+  </canvas>
+</body>
+</html>
